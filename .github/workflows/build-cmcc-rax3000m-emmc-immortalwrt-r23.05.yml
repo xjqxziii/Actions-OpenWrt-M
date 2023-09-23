@@ -34,7 +34,7 @@ env:
   DIY_SH: cmcc-rax3000m-emmc-immortalwrt-r23.05/scripts/diy.sh
   CLASH_CORE: cmcc-rax3000m-emmc-immortalwrt-r23.05/scripts/preset-clash-core.sh
   PARCH_FILES: cmcc-rax3000m-emmc-immortalwrt-r23.05/patches/*.patch
-  $CONFIG_FILE: cmcc-rax3000m-emmc-immortalwrt-r23.05/rax3000m-emmc.config
+  CONFIG_FILE: cmcc-rax3000m-emmc-immortalwrt-r23.05/rax3000m-emmc.config
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: false
   UPLOAD_RELEASE: true
