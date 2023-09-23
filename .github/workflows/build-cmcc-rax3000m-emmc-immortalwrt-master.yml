@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: build-cmcc-rax3000m-emmc-immortalwrt-r23.05
+name: build-cmcc-rax3000m-emmc-immortalwrt-master
 
 permissions: write-all
 # 开启写权限，防止无法上传到release
@@ -27,7 +27,7 @@ env:
   ENV_SH: cmcc-rax3000m-emmc-immortalwrt-r23.05/scripts/environment.sh
   DIY_SH: cmcc-rax3000m-emmc-immortalwrt-r23.05/scripts/diy.sh
   PARCH_FILES: cmcc-rax3000m-emmc-immortalwrt-r23.05/patches/*.patch
-  $CONFIG_FILE: cmcc-rax3000m-emmc-immortalwrt-r23.05/rax3000m-emmc.config
+  CONFIG_FILE: cmcc-rax3000m-emmc-immortalwrt-r23.05/rax3000m-emmc.config
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: false
   UPLOAD_RELEASE: true
