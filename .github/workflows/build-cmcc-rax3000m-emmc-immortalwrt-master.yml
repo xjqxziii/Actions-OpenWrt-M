@@ -19,6 +19,11 @@ on:
    - cron: 0 19 * * 0
    # 分,时,日,月,星期。每周日 19 时执行一次 (UTC时间)
   workflow_dispatch:
+    inputs:
+      ssh:
+        description: 'SSH connection to Actions'
+        required: false
+        default: 'false'
 
 env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt
@@ -77,6 +82,13 @@ jobs:
           cd openwrt
           ./scripts/feeds update -a && ./scripts/feeds install -a        
           chmod +x $GITHUB_WORKSPACE/$DIY_SH && $GITHUB_WORKSPACE/$DIY_SH
+
+      - name: SSH链接管理
+        uses: P3TERX/ssh2actions@v1.0.0
+        if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
+        env:
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
 
       - name: 导入补丁和配置 & 下载文件
         run: |
