@@ -89,6 +89,7 @@ jobs:
         run: |
           [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
           cd openwrt
+          git checkout f39a48885c43e4c977c14b1102b1e8b9f3683b33
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
           git am $GITHUB_WORKSPACE/$PARCH_FILES
