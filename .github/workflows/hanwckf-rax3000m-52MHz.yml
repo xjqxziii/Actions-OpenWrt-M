@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 ###############改名字##############
-name: CMCC-RAX3000M-EMMC-52MHz-hanwckf
+name: hanwckf-rax3000m-52MHz
 
 on:
   repository_dispatch:
