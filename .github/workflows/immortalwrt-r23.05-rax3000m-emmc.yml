@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: build-cmcc-rax3000m-emmc-immortalwrt-r23.05
+name: immortalwrt-r23.05-rax3000m-emmc.yml
 
 permissions: write-all
 # 开启写权限，防止无法上传到release
@@ -29,12 +29,12 @@ on:
 env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt
   REPO_BRANCH: openwrt-23.05
-  FREE_DISK_SH: cmcc-rax3000m-emmc-immortalwrt-r23.05/scripts/free_disk_space.sh
-  ENV_SH: cmcc-rax3000m-emmc-immortalwrt-r23.05/scripts/environment.sh
-  DIY_SH: cmcc-rax3000m-emmc-immortalwrt-r23.05/scripts/diy.sh
-  CLASH_CORE: cmcc-rax3000m-emmc-immortalwrt-r23.05/scripts/preset-clash-core.sh
-  PARCH_FILES: cmcc-rax3000m-emmc-immortalwrt-r23.05/patches/*.patch
-  CONFIG_FILE: cmcc-rax3000m-emmc-immortalwrt-r23.05/rax3000m-emmc.config
+  FREE_DISK_SH: immortalwrt-rax3000m/scripts/free_disk_space.sh
+  ENV_SH: immortalwrt-rax3000m/scripts/environment.sh
+  DIY_SH: immortalwrt-rax3000m/scripts/diy.sh
+  CLASH_CORE: immortalwrt-rax3000m/scripts/preset-clash-core.sh
+  PARCH_FILES: immortalwrt-rax3000m/patches/*.patch
+  CONFIG_FILE: immortalwrt-rax3000m/rax3000m-emmc.config
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: false
   UPLOAD_RELEASE: true
