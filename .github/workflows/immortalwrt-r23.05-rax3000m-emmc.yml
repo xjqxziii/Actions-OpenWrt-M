@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: immortalwrt-r23.05-rax3000m-emmc.yml
+name: immortalwrt-r23.05-rax3000m-emmc
 
 permissions: write-all
 # 开启写权限，防止无法上传到release
@@ -33,7 +33,7 @@ env:
   ENV_SH: immortalwrt-rax3000m/scripts/environment.sh
   DIY_SH: immortalwrt-rax3000m/scripts/diy.sh
   CLASH_CORE: immortalwrt-rax3000m/scripts/preset-clash-core.sh
-  PARCH_FILES: immortalwrt-rax3000m/patches/*.patch
+  PARCH_FILES: immortalwrt-rax3000m/23.05.patches/*.patch
   CONFIG_FILE: immortalwrt-rax3000m/rax3000m-emmc.config
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: false
@@ -89,7 +89,7 @@ jobs:
         run: |
           [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
           cd openwrt
-          git checkout f39a48885c43e4c977c14b1102b1e8b9f3683b33
+          git checkout v23.05.0-rc4
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
           git am $GITHUB_WORKSPACE/$PARCH_FILES
