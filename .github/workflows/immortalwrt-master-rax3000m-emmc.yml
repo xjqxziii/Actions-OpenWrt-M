@@ -29,10 +29,10 @@ on:
 env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt
   REPO_BRANCH: openwrt-23.05
-  TAG_NAME: v23.05.0-rc4
   DIY_FEEDS_SH: immortalwrt-rax3000m/scripts/diy_feeds_master.sh
   DIY_SH: immortalwrt-rax3000m/scripts/diy_master.sh
-  CONFIG_FILE: immortalwrt-rax3000m/rax3000m-emmc-master.config
+  CLASH_CORE: immortalwrt-rax3000m/scripts/preset-clash-core.sh
+  CONFIG_FILE: immortalwrt-rax3000m/rax3000m-emmc.config
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: false
   UPLOAD_RELEASE: true
@@ -69,7 +69,6 @@ jobs:
         working-directory: /workdir
         run: |
           git clone $REPO_URL -b $REPO_BRANCH openwrt
-          cd openwrt && git checkout $TAG_NAME
           ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
       - name: 开启缓存
@@ -97,6 +96,7 @@ jobs:
         run: |
           [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
           cd openwrt
+          chmod +x $GITHUB_WORKSPACE/$CLASH_CORE && $GITHUB_WORKSPACE/$CLASH_CORE
           make defconfig
           make download -j8 V=10
           find dl -size -1024c -exec ls -l {} \;
@@ -126,9 +126,6 @@ jobs:
         if: steps.compile.outputs.status == 'success'
         run: |
           cd openwrt/bin/targets/*/*
-          rm -rf *.buildinfo 
-          rm -rf *.json 
-          rm -rf *.manifest 
           rm -rf packages
           echo "FIRMWARE=$PWD" >> $GITHUB_ENV
           echo "status=success" >> $GITHUB_OUTPUT
