@@ -58,6 +58,7 @@ jobs:
           sudo -E apt-get update --fix-missing -y
           sudo -E apt-get -qq full-upgrade -y
           sudo bash -c 'bash <(curl -s https://build-scripts.immortalwrt.eu.org/init_build_environment.sh)'
+          sudo apt-get install b43-fwcutter -y
           sudo timedatectl set-timezone "$TZ"
           sudo mkdir -p /workdir
           sudo chown $USER:$GROUPS /workdir
