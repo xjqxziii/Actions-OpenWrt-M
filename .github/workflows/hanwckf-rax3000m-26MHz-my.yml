@@ -25,7 +25,7 @@ on:
 #    - cron: 0 16 * * *
 
 env:
-  REPO_URL: https://github.com/lgs2007m/immortalwrt-mt798x-rax3000m-emmc
+  REPO_URL: https://github.com/hanwckf/immortalwrt-mt798x
   REPO_BRANCH: openwrt-21.02
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: hanwckf/CMCC-RAX3000M-EMMC/.config
@@ -58,14 +58,18 @@ jobs:
         sudo timedatectl set-timezone "$TZ"
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
-        
+
+    - name: 检查空间使用情况
+      if: (!cancelled())
+      run: df -hT
+
     - name: 清理磁盘空间(Ubuntu)
       uses: jlumbroso/free-disk-space@main
       with:
         # this might remove tools that are actually needed,
         # when set to "true" but frees about 6 GB
         tool-cache: true
-        
+
         # all of these default to true, but feel free to set to
         # "false" if necessary for your workflow
         android: false
@@ -73,7 +77,11 @@ jobs:
         haskell: false
         large-packages: false
         swap-storage: false
-        
+
+    - name: 检查空间使用情况
+      if: (!cancelled())
+      run: df -hT
+
     - name: 下载固件源码
       working-directory: /workdir
       run: |
